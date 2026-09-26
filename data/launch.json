@@ -1,0 +1,21 @@
+{
+  "status": "prelaunch",
+  "network": "solana-mainnet",
+  "mint_address": null,
+  "creation_tx_sig": null,
+  "authorities_verified": {
+    "mint_is_none": null,
+    "freeze_is_none": null
+  },
+  "dev_buy_tx_sig": null,
+  "team_position_base_units": null,
+  "vesting_contract": {
+    "address": null,
+    "recipient_hardware_wallet": null,
+    "cancelable_by_sender": false,
+    "cliff_end_utc": null,
+    "end_utc": null
+  },
+  "pump_swap_migration_tx": null,
+  "verification_timestamp_utc": null
+}

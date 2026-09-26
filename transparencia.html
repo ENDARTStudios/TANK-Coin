@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proof of Launch — TANK Coin ($TANK)</title>
+<meta name="description" content="Prova pública de lançamento do TANK Coin: mint, autoridades, transações, posição e vesting — verificáveis on-chain.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="assets/tema.css">
+</head>
+<body>
+
+<nav class="site">
+  <div class="wrap bar">
+    <a class="marca" href="index.html"><img src="assets/monograma.svg" alt="Monograma TANK">TANK<span style="color:var(--amber)">/$TANK</span></a>
+    <span class="selo">SOLANA · STATUS: PRELAUNCH</span>
+    <div class="links">
+      <a href="index.html">Visão geral</a>
+      <a href="transparencia.html">Prova on-chain</a>
+      <a href="manifesto.html">Manifesto</a>
+      <a href="termos.html">Riscos</a>
+      <a href="changelog.html">Histórico</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero" style="padding-bottom:24px">
+    <div>
+      <h1 style="font-size:1.9rem">PROVA ON-CHAIN<br><span class="tick">Recibo técnico do lançamento</span></h1>
+      <p class="sub">Toda afirmação importante deste projeto deve poder ser conferida por você, na blockchain. Esta página é o recibo: valores, unidades, timestamps e links de explorador.</p>
+    </div>
+    <div class="placa">
+      <div class="st" id="status"><span class="badge aguardando"><span class="dot"></span>STATUS: PRELAUNCH</span></div>
+      <p class="mini" style="margin-top:12px">Verde aparece somente com verificação on-chain publicada.</p>
+    </div>
+  </div>
+
+  <div class="risco-faixa"><strong>Nenhum dado abaixo é promessa.</strong> Campos marcados como aguardando serão preenchidos com fatos on-chain — ou permanecerão vazios.</div>
+
+  <section>
+    <h2 class="sec"><span class="n">01</span>Linha do tempo</h2>
+    <div class="timeline" id="timeline">
+      <div class="tl ag"><div class="ponto"></div><div class="nome">Criação</div><span class="st">PENDENTE</span></div>
+      <div class="tl ag"><div class="ponto"></div><div class="nome">Auditoria de autoridades</div><span class="st">PENDENTE</span></div>
+      <div class="tl ag"><div class="ponto"></div><div class="nome">Dev Buy</div><span class="st">PENDENTE</span></div>
+      <div class="tl ag"><div class="ponto"></div><div class="nome">Vesting V0</div><span class="st">PENDENTE</span></div>
+      <div class="tl na"><div class="ponto"></div><div class="nome">Migração PumpSwap</div><span class="st">N/A — depende da graduação</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">02</span>Cards de evidência</h2>
+    <p class="sec-sub">Valores reais aparecem aqui com botão de cópia e link de explorador. Até o Dia 0, permanecem em aguardo.</p>
+    <div id="provas"></div>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">03</span>Auditoria manual em três passos</h2>
+    <div class="grid3">
+      <div class="card"><h3>1 · Copie o mint</h3><p>Use o botão de cópia do card de evidência (quando publicado).</p></div>
+      <div class="card"><h3>2 · Confira no explorador</h3><p>Solscan: supply, decimals e autoridades do mint.</p></div>
+      <div class="card"><h3>3 · Compare</h3><p>Confrontre transações e contrato de vesting com os links desta página.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">04</span>Última verificação e fonte dos dados</h2>
+    <div class="grid2">
+      <div class="card"><h3>Última verificação</h3><p id="ultima-ver">Nenhuma verificação on-chain registrada ainda.</p></div>
+      <div class="card"><h3>Fonte dos dados</h3><p>data/launch.json (schema v2), publicado por este site. Verificável contra a Solana mainnet via RPC e exploradores públicos.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="meta">TANK COIN · v1.3.0 · atualizado 2026-08-23 UTC · status: PRELAUNCH · rede: solana-mainnet</div>
+  </footer>
+
+</div>
+
+<script>
+function el(tag, cls, txt){ const e = document.createElement(tag); if(cls) e.className = cls; if(txt!==undefined) e.textContent = txt; return e; }
+function badge(tipo, txt){ const b = el("span","badge "+tipo); const d = el("span","dot"); b.appendChild(d); b.appendChild(document.createTextNode(txt)); return b; }
+
+function cardProva(nome, estado, valorEl, acoes){
+  const c = el("div","prova");
+  const topo = el("div","topo");
+  topo.appendChild(el("span","nome",nome));
+  topo.appendChild(badge(estado.badge, estado.txt));
+  c.appendChild(topo);
+  if(valorEl) c.appendChild(valorEl);
+  if(acoes && acoes.length){ const a = el("div","acoes"); acoes.forEach(x=>a.appendChild(x)); c.appendChild(a); }
+  return c;
+}
+function botaoCopiar(texto){
+  const b = el("button","copiar","COPIAR");
+  b.onclick = () => { navigator.clipboard.writeText(texto).then(()=>{ b.textContent = "COPIADO"; setTimeout(()=>{ b.textContent = "COPIAR"; }, 1600); }); };
+  return b;
+}
+function linkExt(href, rotulo){
+  const a = el("a","mini",rotulo + " ↗");
+  a.href = href; a.target = "_blank"; a.rel = "noopener noreferrer";
+  return a;
+}
+function valorPendente(motivo){
+  const v = el("div","valor","AGUARDANDO");
+  const p = el("p","mini",motivo);
+  const box = el("div"); box.appendChild(v); box.appendChild(p);
+  return box;
+}
+
+fetch("data/launch.json").then(r=>r.json()).then(d=>{
+  const statusEl = document.getElementById("status");
+  const statusTxt = d.status === "prelaunch" ? "PRELAUNCH" : d.status.toUpperCase();
+  const statusBadge = d.status === "verified" ? "verificado" : (d.status === "prelaunch" ? "aguardando" : "incidente");
+  statusEl.innerHTML = "";
+  statusEl.appendChild(badge(statusBadge, "STATUS: " + statusTxt));
+
+  const tl = document.getElementById("timeline");
+  const av = d.authorities_verified || {};
+  const vc = d.vesting_contract || {};
+  const est = (ok) => ok === true ? "ok" : (ok === null ? "ag" : "er");
+  const estTxt = (ok) => ok === true ? "VERIFICADO" : (ok === null ? "PENDENTE" : "FALHA");
+  const etapas = [
+    { ok: d.creation_tx_sig ? true : null, nome: "Criação" },
+    { ok: (av.mint_is_none === true && av.freeze_is_none === true) ? true : (av.mint_is_none !== null || av.freeze_is_none !== null ? false : null), nome: "Auditoria de autoridades" },
+    { ok: d.dev_buy_tx_sig ? true : null, nome: "Dev Buy" },
+    { ok: vc.address ? true : null, nome: "Vesting V0" },
+    { ok: d.pump_swap_migration_tx ? true : null, nome: "Migração PumpSwap", na: true }
+  ];
+  tl.innerHTML = "";
+  etapas.forEach(e=>{
+    const t = el("div", "tl " + (e.ok === true ? "ok" : e.ok === false ? "er" : (e.na && e.ok === null ? "na" : "ag")));
+    t.appendChild(el("div","ponto"));
+    t.appendChild(el("div","nome",e.nome));
+    const st = el("span","st", e.ok === true ? "VERIFICADO" : e.ok === false ? "FALHA" : (e.na && e.ok === null ? "N/A" : "PENDENTE"));
+    t.appendChild(st);
+    tl.appendChild(t);
+  });
+
+  const provas = document.getElementById("provas");
+  provas.innerHTML = "";
+
+  if(d.mint_address){
+    const v = el("div","valor",d.mint_address);
+    provas.appendChild(cardProva("Mint address", {badge:"verificado",txt:"PUBLICADO"}, v,
+      [botaoCopiar(d.mint_address), linkExt("https://solscan.io/token/"+d.mint_address,"SOLSCAN")]));
+  } else {
+    provas.appendChild(cardProva("Mint address", {badge:"aguardando",txt:"AGUARDANDO"}, valorPendente("Será preenchido com o endereço real no Dia 0.")));
+  }
+
+  const autCard = av.mint_is_none === true && av.freeze_is_none === true
+    ? (()=>{ const v = el("div","valor","mint_authority = None · freeze_authority = None"); return cardProva("Autoridades do mint",{badge:"verificado",txt:"VERIFICADO ON-CHAIN"},v); })()
+    : (av.mint_is_none !== null || av.freeze_is_none !== null
+      ? cardProva("Autoridades do mint",{badge:"incidente",txt:"VERIFICAÇÃO FALHOU"}, valorPendente("mint=None: "+av.mint_is_none+" · freeze=None: "+av.freeze_is_none+" — lançamento não deve ser comunicado como seguro."))
+      : cardProva("Autoridades do mint",{badge:"aguardando",txt:"AGUARDANDO"}, valorPendente("Inspeção obrigatória pós-criação: mint_authority = None e freeze_authority = None.")));
+  provas.appendChild(autCard);
+
+  if(d.creation_tx_sig){
+    const v = el("div","valor",d.creation_tx_sig);
+    provas.appendChild(cardProva("Transação de criação",{badge:"verificado",txt:"PUBLICADA"},v,[botaoCopiar(d.creation_tx_sig), linkExt("https://solscan.io/tx/"+d.creation_tx_sig,"SOLSCAN")]));
+  } else {
+    provas.appendChild(cardProva("Transação de criação",{badge:"aguardando",txt:"AGUARDANDO"}, valorPendente("Assinatura da criação será registrada no Dia 0.")));
+  }
+
+  if(d.dev_buy_tx_sig){
+    const v = el("div","valor",d.dev_buy_tx_sig);
+    provas.appendChild(cardProva("Dev Buy",{badge:"verificado",txt:"PUBLICADO"},v,[botaoCopiar(d.dev_buy_tx_sig), linkExt("https://solscan.io/tx/"+d.dev_buy_tx_sig,"SOLSCAN")]));
+  } else {
+    provas.appendChild(cardProva("Dev Buy",{badge:"aguardando",txt:"AGUARDANDO"}, valorPendente("Compra da equipe no mercado aberto — assinatura será registrada.")));
+  }
+
+  const pos = d.team_position_base_units
+    ? cardProva("Posição da equipe",{badge:"verificado",txt:"REGISTRADA"}, el("div","valor", d.team_position_base_units + " (base units, sem arredondamento)"))
+    : cardProva("Posição da equipe",{badge:"aguardando",txt:"AGUARDANDO"}, valorPendente("Quantidade exata recebida no Dev Buy, em base units."));
+  provas.appendChild(pos);
+
+  if(vc.address){
+    const v = el("div","valor",vc.address);
+    const det = el("p","mini","cancelável pelo sender: " + (vc.cancelable_by_sender ? "SIM (viola V0)" : "não") + " · cliff até " + (vc.cliff_end_utc||"—") + " · fim " + (vc.end_utc||"—"));
+    const box = el("div"); box.appendChild(v); box.appendChild(det);
+    const estadoVest = vc.cancelable_by_sender ? {badge:"incidente",txt:"FALHA V0"} : {badge:"verificado",txt:"ATIVO"};
+    provas.appendChild(cardProva("Vesting V0 (Streamflow)", estadoVest, box, [botaoCopiar(vc.address), linkExt("https://app.streamflow.finance/stream/"+vc.address,"STREAMFLOW")]));
+  } else {
+    provas.appendChild(cardProva("Vesting V0 (Streamflow)",{badge:"aguardando",txt:"AGUARDANDO"}, valorPendente("Contrato com destinatário imutável e cancelamento desabilitado (especificação V0).")));
+  }
+
+  const mig = d.pump_swap_migration_tx
+    ? cardProva("Migração PumpSwap",{badge:"verificado",txt:"OCORREU"}, el("div","valor",d.pump_swap_migration_tx), [botaoCopiar(d.pump_swap_migration_tx), linkExt("https://solscan.io/tx/"+d.pump_swap_migration_tx,"SOLSCAN")])
+    : cardProva("Migração PumpSwap",{badge:"na",txt:"N/A"}, valorPendente("Só se aplica se a curva atingir o limiar de graduação do protocolo."));
+  provas.appendChild(mig);
+
+  document.getElementById("ultima-ver").textContent = d.verification_timestamp_utc
+    ? "Verificação registrada em " + d.verification_timestamp_utc + " UTC."
+    : "Nenhuma verificação on-chain registrada ainda.";
+}).catch(()=>{
+  document.getElementById("provas").appendChild(cardProva("Fonte de dados indisponível",{badge:"incidente",txt:"ERRO"}, valorPendente("Não foi possível ler data/launch.json — reportar.")));
+});
+</script>
+
+</body>
+</html>

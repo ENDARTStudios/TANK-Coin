@@ -1,0 +1,169 @@
+/* TEMA TANK — sistema visual compartilhado (v1.3.0) */
+:root{
+  --obsidian:#090D0B;
+  --graphite:#151B18;
+  --deep:#1E3827;
+  --amber:#F3A712;
+  --sand:#D8C9A2;
+  --paper:#F2F0E8;
+  --steel:#82908A;
+  --green:#3EB489;
+  --red:#E4573D;
+  --line:#22302A;
+  --line-soft:#1A2420;
+  --sans:'Inter',-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --mono:'IBM Plex Mono',Consolas,'Cascadia Mono',monospace;
+  --r:10px;
+  --r-lg:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--obsidian);color:var(--paper);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1020px;margin:0 auto;padding:0 20px}
+.mono,code{font-family:var(--mono);font-size:.86em;background:rgba(242,240,232,.05);border:1px solid var(--line-soft);padding:2px 7px;border-radius:6px;color:var(--sand);word-break:break-all}
+
+/* navegacao */
+nav.site{position:sticky;top:0;z-index:50;background:rgba(9,13,11,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.site .bar{display:flex;align-items:center;gap:14px;padding:12px 0;flex-wrap:wrap}
+nav.site .marca{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px;color:var(--paper)}
+nav.site .marca img{width:30px;height:30px}
+nav.site .selo{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--amber);border:1px solid var(--amber);border-radius:20px;padding:3px 10px;white-space:nowrap}
+nav.site .links{display:flex;gap:16px;margin-left:auto;flex-wrap:wrap}
+nav.site .links a{color:var(--steel);font-size:.88rem;letter-spacing:.03em}
+nav.site .links a:hover{color:var(--amber);text-decoration:none}
+
+/* botoes */
+.btn{display:inline-block;font-weight:700;letter-spacing:.03em;padding:12px 24px;border-radius:var(--r);border:2px solid transparent;transition:.15s}
+.btn.primary{background:var(--amber);color:var(--obsidian)}
+.btn.primary:hover{background:var(--sand);text-decoration:none}
+.btn.ghost{border-color:var(--amber);color:var(--amber)}
+.btn.ghost:hover{background:rgba(243,167,18,.08);text-decoration:none}
+
+/* badges de estado */
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;font-weight:700;padding:4px 12px;border-radius:20px;white-space:nowrap}
+.badge.verificado{color:var(--green);border:1px solid var(--green);background:rgba(62,180,137,.08)}
+.badge.aguardando{color:var(--amber);border:1px solid var(--amber);background:rgba(243,167,18,.07)}
+.badge.incidente{color:var(--red);border:1px solid var(--red);background:rgba(228,87,61,.08)}
+.badge.na{color:var(--steel);border:1px solid var(--line);background:rgba(130,144,138,.06)}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;padding:56px 0 40px}
+.hero h1{font-size:2.6rem;font-weight:800;line-height:1.08;letter-spacing:-.01em;margin-bottom:14px}
+.hero h1 .tick{color:var(--amber)}
+.hero .sub{color:var(--steel);font-size:1.05rem;max-width:520px;margin-bottom:26px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .placa{position:relative;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--graphite);padding:26px;text-align:center}
+.hero .placa img{width:220px;height:220px}
+.hero .placa .st{margin-top:14px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+
+/* faixa de risco */
+.risco-faixa{background:#2A1510;border:1px solid #5C2A1E;border-left:5px solid var(--red);border-radius:var(--r);padding:12px 18px;margin:0 0 34px;font-size:.92rem}
+.risco-faixa strong{color:var(--red)}
+
+/* secao */
+section{scroll-margin-top:80px;margin-bottom:52px}
+h2.sec{font-size:1.45rem;font-weight:800;letter-spacing:.02em;margin-bottom:6px}
+h2.sec .n{font-family:var(--mono);color:var(--amber);font-size:.8rem;letter-spacing:.15em;display:block;margin-bottom:4px}
+.sec-sub{color:var(--steel);margin-bottom:22px;max-width:640px;font-size:.95rem}
+
+/* estado da missao */
+.missao{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.missao .etapa{background:var(--graphite);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.missao .etapa .id{font-family:var(--mono);color:var(--steel);font-size:.72rem;letter-spacing:.15em}
+.missao .etapa .nome{font-weight:700;font-size:.92rem;margin:6px 0 10px}
+.missao .etapa .st{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--steel)}
+
+/* cards */
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:var(--graphite);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.card h3{font-size:1rem;font-weight:700;margin-bottom:8px}
+.card p{color:var(--steel);font-size:.9rem}
+.card .ic{width:34px;height:34px;margin-bottom:12px;color:var(--amber)}
+.card .st{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em}
+
+/* tripulacao */
+.ranks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.rank{background:var(--graphite);border:1px solid var(--line);border-radius:var(--r);padding:18px;text-align:center}
+.rank .selo{width:46px;height:46px;margin:0 auto 10px;border:1px solid var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--amber);font-weight:800;font-size:1.05rem}
+.rank .nome{font-weight:700;font-size:.92rem}
+.rank .dias{font-family:var(--mono);color:var(--steel);font-size:.75rem;margin-top:4px}
+
+/* risco */
+.risco-card{border:1px solid var(--line);border-radius:var(--r);padding:16px;background:var(--graphite)}
+.risco-card h3{color:var(--red);font-size:.95rem;margin-bottom:6px}
+.risco-card p{color:var(--steel);font-size:.85rem}
+
+/* tabelas */
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;font-size:.9rem}
+th{background:var(--graphite);color:var(--sand);font-family:var(--mono);font-size:.75rem;letter-spacing:.08em}
+td{color:var(--steel)}
+
+/* timeline */
+.timeline{display:flex;gap:0;margin:18px 0;overflow-x:auto;padding-bottom:6px}
+.tl{flex:1;min-width:150px;position:relative;padding:0 10px}
+.tl::before{content:"";position:absolute;top:9px;left:0;right:0;height:2px;background:var(--line)}
+.tl:first-child::before{left:50%}
+.tl:last-child::before{right:50%}
+.tl .ponto{width:20px;height:20px;border-radius:50%;border:2px solid var(--steel);background:var(--obsidian);margin:0 auto 10px;position:relative;z-index:2}
+.tl.ok .ponto{border-color:var(--green);background:var(--green)}
+.tl.ag .ponto{border-color:var(--amber)}
+.tl.er .ponto{border-color:var(--red);background:var(--red)}
+.tl .nome{font-size:.82rem;font-weight:700;text-align:center}
+.tl .st{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-align:center;display:block;margin-top:4px;color:var(--steel)}
+.tl.ok .st{color:var(--green)}
+.tl.ag .st{color:var(--amber)}
+.tl.er .st{color:var(--red)}
+
+/* prova: card de evidencia */
+.prova{background:var(--graphite);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:12px}
+.prova .topo{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.prova .topo .nome{font-weight:700;font-size:.95rem}
+.prova .valor{font-family:var(--mono);font-size:.82rem;color:var(--sand);background:rgba(242,240,232,.04);border:1px solid var(--line-soft);border-radius:8px;padding:10px 12px;word-break:break-all;margin-bottom:10px}
+.prova .acoes{display:flex;gap:10px;flex-wrap:wrap}
+.copiar{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;background:transparent;color:var(--amber);border:1px solid var(--amber);border-radius:6px;padding:4px 12px;cursor:pointer}
+.copiar:hover{background:rgba(243,167,18,.08)}
+.mini{font-size:.8rem;color:var(--steel)}
+
+/* documento (manifesto/termos) */
+.doc{margin-top:10px}
+.doc h1{font-size:1.8rem;font-weight:800;margin-bottom:6px}
+.doc h2{font-size:1.2rem;font-weight:800;color:var(--amber);margin:30px 0 10px}
+.doc p,.doc li{color:var(--paper);font-size:.95rem}
+.doc blockquote{background:var(--graphite);border-left:4px solid var(--amber);padding:14px 16px;margin:14px 0;border-radius:0 8px 8px 0}
+.doc blockquote.risco{border-left-color:var(--red)}
+.versao-card{background:var(--graphite);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin:18px 0;font-family:var(--mono);font-size:.78rem;color:var(--steel)}
+.versao-card strong{color:var(--sand)}
+
+/* changelog */
+.cl-item{display:grid;grid-template-columns:170px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line-soft)}
+.cl-item .meta{font-family:var(--mono);font-size:.78rem;color:var(--steel)}
+.cl-item .meta .v{color:var(--amber);font-weight:700}
+.cl-item ul{margin-left:18px}
+.cl-item li{font-size:.9rem;color:var(--paper);margin-bottom:4px}
+
+/* rodape */
+footer{border-top:1px solid var(--line);margin-top:40px;padding:34px 0 50px;color:var(--steel);font-size:.82rem}
+footer .col{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:22px}
+footer h4{color:var(--sand);font-size:.85rem;letter-spacing:.06em;margin-bottom:10px}
+footer a{display:block;margin-bottom:6px;color:var(--steel)}
+footer .meta{font-family:var(--mono);font-size:.7rem;color:var(--steel);border-top:1px solid var(--line-soft);padding-top:16px}
+
+/* responsivo */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero .placa img{width:150px;height:150px}
+  .grid3,.grid4,.missao,.ranks{grid-template-columns:repeat(2,1fr)}
+  .cl-item{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .grid2,.grid3,.grid4,.missao,.ranks{grid-template-columns:1fr}
+  .hero h1{font-size:2rem}
+  nav.site .links{width:100%;justify-content:space-between;gap:8px}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}

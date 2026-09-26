@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Histórico — TANK Coin ($TANK)</title>
+<meta name="description" content="Histórico append-only do TANK Coin: versões, alterações, motivos e impacto.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="assets/tema.css">
+</head>
+<body>
+
+<nav class="site">
+  <div class="wrap bar">
+    <a class="marca" href="index.html"><img src="assets/monograma.svg" alt="Monograma TANK">TANK<span style="color:var(--amber)">/$TANK</span></a>
+    <span class="selo">SOLANA · STATUS: PRELAUNCH</span>
+    <div class="links">
+      <a href="index.html">Visão geral</a>
+      <a href="transparencia.html">Prova on-chain</a>
+      <a href="manifesto.html">Manifesto</a>
+      <a href="termos.html">Riscos</a>
+      <a href="changelog.html">Histórico</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="hero" style="padding-bottom:10px">
+    <div>
+      <h1 style="font-size:1.9rem">HISTÓRICO<br><span class="tick">append-only</span></h1>
+      <p class="sub">Versões publicadas são imutáveis. Cada entrada registra data, versão, alteração e motivo. Incidentes futuros recebem selo próprio e post-mortem.</p>
+    </div>
+  </div>
+
+  <div class="cl-item">
+    <div class="meta"><span class="v">v1.3.0</span><br>2026-08-23<br>UTC</div>
+    <div>
+      <p><strong>Redesign pré-lançamento (decisão do operador).</strong></p>
+      <ul>
+        <li>Sistema visual unificado (assets/tema.css): paleta semântica, badges de estado, timeline.</li>
+        <li>Home redesenhada: hero, estado da missão, "o que você pode verificar", tripulação e risco em cartões.</li>
+        <li>Proof of Launch reconstruída como painel de evidências (timeline + cards com cópia e links).</li>
+        <li>Família de logos: emblema simplificado + monograma; changelog público criado.</li>
+        <li>Motivo: o primeiro contato com o usuário precede o lançamento; decisão do operador sobre o congelamento proposto.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cl-item">
+    <div class="meta"><span class="v">v1.2.1</span><br>2026-08-22/23<br>UTC</div>
+    <div>
+      <p><strong>Congelamento proposto pré-DIA 0 (posteriormente substituído pela decisão do operador na v1.3.0).</strong></p>
+      <ul>
+        <li>Roadmap de redesign arquivado como plano pós-lançamento.</li>
+        <li>Nenhuma mudança de site aplicada nesta versão.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cl-item">
+    <div class="meta"><span class="v">v1.2.0</span><br>2026-08-23<br>UTC</div>
+    <div>
+      <p><strong>Arquitetura bifurcada (OPSEC).</strong></p>
+      <ul>
+        <li>Repositório tornado privado (cofre operacional).</li>
+        <li>Site público autossuficiente: manifesto.html, termos.html e transparencia.html servidos localmente.</li>
+        <li>CLI read-only criado (scripts/pumpfun-cli.mjs, zero dependências).</li>
+        <li>Correção de bug de endianness na ferramenta de verificação do mint (triangulação Node/Python/PowerShell).</li>
+        <li>Monitor reescrito para verificar apenas endpoints públicos.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cl-item">
+    <div class="meta"><span class="v">v1.1.0</span><br>2026-08-22<br>UTC</div>
+    <div>
+      <p><strong>Revisão crítica externa.</strong></p>
+      <ul>
+        <li>Raydium → PumpSwap em todos os artefatos (verificado na documentação oficial).</li>
+        <li>Garantias de mint/freeze reescritas como condicionais (verificação on-chain obrigatória).</li>
+        <li>Removida a afirmação de probabilidade percentual de perda total (sem fonte que meça o evento).</li>
+        <li>Especificação de vesting V0 congelada: destinatário imutável, cancelamento desabilitado, datas absolutas.</li>
+        <li>Orçamento refeito com taxas oficiais; retry seguro (blockhash/idempotência); status reclassificado para prelaunch.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cl-item">
+    <div class="meta"><span class="v">v1.0.0</span><br>2026-08-22<br>UTC</div>
+    <div>
+      <p><strong>Pacote inicial publicado.</strong></p>
+      <ul>
+        <li>Manifesto, termos, site, protocolos, kit social, runbook e publicação do portal.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <div class="meta">TANK COIN · v1.3.0 · atualizado 2026-08-23 UTC · status: PRELAUNCH · histórico append-only · incidentes futuros serão registrados aqui</div>
+  </footer>
+</div>
+
+</body>
+</html>
