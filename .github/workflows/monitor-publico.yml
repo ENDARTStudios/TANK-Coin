@@ -1,0 +1,43 @@
+name: monitor-publico
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Site publicado (deve ser 200)
+        run: |
+          code=$(curl -sL -o /dev/null -w '%{http_code}' https://endartstudios.github.io/TANK-Coin/)
+          echo "site: $code"
+          test "$code" = "200"
+
+      - name: Manifesto publico (deve ser 200)
+        run: |
+          code=$(curl -sL -o /dev/null -w '%{http_code}' https://endartstudios.github.io/TANK-Coin/manifesto.html)
+          echo "manifesto: $code"
+          test "$code" = "200"
+
+      - name: Termos publicos (deve ser 200)
+        run: |
+          code=$(curl -sL -o /dev/null -w '%{http_code}' https://endartstudios.github.io/TANK-Coin/termos.html)
+          echo "termos: $code"
+          test "$code" = "200"
+
+      - name: Proof of Launch (deve ser 200)
+        run: |
+          code=$(curl -sL -o /dev/null -w '%{http_code}' https://endartstudios.github.io/TANK-Coin/transparencia.html)
+          echo "transparencia: $code"
+          test "$code" = "200"
+
+      - name: Contrato de dados publico (deve ser 200)
+        run: |
+          code=$(curl -sL -o /dev/null -w '%{http_code}' https://endartstudios.github.io/TANK-Coin/data/launch.json)
+          echo "launch.json: $code"
+          test "$code" = "200"
